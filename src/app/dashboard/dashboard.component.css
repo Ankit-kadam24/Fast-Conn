@@ -54,7 +54,7 @@ li a{
     text-align: center;
 }
 .bottom-section{
-    margin-top: 70px;
+    margin-top: 80px;
 }
 .bottom-section button{
     height: 45px;
@@ -88,6 +88,22 @@ li a{
     font-size: 20px;
     vertical-align: middle;
     border-radius: 10px;
+}
+.toggleTo{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.toggleTo .prepaid{
+    width: 50%;
+    border: 0px;
+}
+.toggleTo .postpaid{
+    width: 50%;
+    border: 0px;
+    background-color: #333;
+    color: white;
 }
 .but{
     display: flex;

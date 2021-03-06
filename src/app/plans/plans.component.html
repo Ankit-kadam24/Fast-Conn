@@ -1,171 +1,28 @@
 <div class="contain">
-<div class="plan123">
-    <div class="plan ">
-      <!--<h3 class="plan-title">
-        Starter
-      </h3> -->
-      <div class="plan-cost"><span class="plan-price">Rs 99</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i> Unlimited Calls </li>
-        <li><i class="ion-checkmark"> </i>1 GB data</li>
-        <li> <i class="ion-checkmark"></i> 18 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
+  <div class="plan123" >
+    <div *ngFor = "let pl of plans; index as i" >
+      <div *ngIf = 'isOdd(i); then normalBlock; else featuredBlock'></div>
+      <ng-template #normalBlock>
+        <div class="plan" >
+          <div class="plan-cost"><span class="plan-price">Rs {{pl.amt}}</span></div>
+          <ul class="plan-features">
+            <li><i class="ion-checkmark"> </i>{{pl.calls}}</li>
+            <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
+            <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
+          </ul>
+          <div class="plan-select"><a href="">Select Plan</a></div>
+        </div>
+      </ng-template>
+      <ng-template #featuredBlock>
+        <div class="plan featured" >
+          <div class="plan-cost"><span class="plan-price">Rs {{pl.amt}}</span></div>
+          <ul class="plan-features">
+            <li><i class="ion-checkmark"> </i>{{pl.calls}}</li>
+            <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
+            <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
+          </ul>
+          <div class="plan-select"><a href="">Select Plan</a></div>
+        </div>
+      </ng-template>
     </div>
-    <div class="plan featured">
-     <!--- <h3 class="plan-title">
-        Basic
-      </h3> -->
-      <div class="plan-cost"><span class="plan-price">Rs 130</span> <!-- <span class="plan-type">/ Monthly</span>--></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i>2 GB data</li>
-        <li> <i class="ion-checkmark"></i> 24 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <!--<h3 class="plan-title">
-        Professional
-      </h3>-->
-      <div class="plan-cost"><span class="plan-price"> Rs 199</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i>1 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 24 days validity</li>
-     
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-     <!--- <h3 class="plan-title">
-        Ultra
-      </h3> -->
-      <div class="plan-cost"><span class="plan-price">Rs 225</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 1 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 28 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 270</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured ">
-      <div class="plan-cost"><span class="plan-price">Rs 310</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 28 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan ">
-      <div class="plan-cost"><span class="plan-price">Rs 400</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 1.5 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    
-    <div class="plan featured">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 600</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 1.5 GB </li>
-        <li> <i class="ion-checkmark"></i> 84 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <!-- <div class="plan">
-      <div class="plan-cost"><span class="plan-price">Rs 450</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 4 GB data/ Day</li>
-        <li> <i class="ion-checkmark"></i> 56 days validity</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div> -->
   </div>
-</div>

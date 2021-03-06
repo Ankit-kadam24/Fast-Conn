@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
+// import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoaderComponent } from './loader/loader.component';
@@ -20,17 +21,21 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SupportComponent } from './support/support.component';
-import { NewpostpaidComponent } from './Landline/newpostpaid/newpostpaid.component';
-import { NewprepaidComponent } from './Landline/newprepaid/newprepaid.component';
-import { PaybillComponent } from './Landline/paybill/paybill.component';
-import { PostpaidplansComponent } from './Landline/postpaidplans/postpaidplans.component';
-import { RechargeComponent } from './Landline/recharge/recharge.component';
-import { PrepaidplansComponent } from './Landline/prepaidplans/prepaidplans.component';
+// import { NewpostpaidComponent } from './Landline/newpostpaid/newpostpaid.component';
+// import { NewprepaidComponent } from './Landline/newprepaid/newprepaid.component';
+import {NewprepaidComponent} from './newprepaid/newprepaid.component';
+import { NewpostpaidComponent} from './newpostpaid/newpostpaid.component'
+// import { PaybillComponent } from './Landline/paybill/paybill.component';
+import { PostpaidplansComponent } from './postpaidplans/postpaidplans.component';
+// import { RechargeComponent } from './Landline/recharge/recharge.component';
+// import { PrepaidplansComponent } from './Landline/prepaidplans/prepaidplans.component';
 import { PaybillsComponent } from './Landline/paybills/paybills.component';
 import { SuccessfulComponent } from './successful/successful.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { PrepaidplansService} from './prepaidplans.service';
+import { SimrequestService } from './simrequest.service';
+import { PlansComponent } from './plans/plans.component';
 
 @NgModule({
   declarations: [
@@ -46,13 +51,14 @@ import {MatCardModule} from '@angular/material/card';
     SupportComponent,
     NewpostpaidComponent,
     NewprepaidComponent,
-    PaybillComponent,
+    // PaybillComponent,
     PostpaidplansComponent,
-    RechargeComponent,
-    PrepaidplansComponent,
+    // RechargeComponent,
+    // PrepaidplansComponent,
     PaybillsComponent,
     SuccessfulComponent,
-    DashboardComponent
+    DashboardComponent,
+    PlansComponent
 
   ],
   imports: [
@@ -65,10 +71,12 @@ import {MatCardModule} from '@angular/material/card';
      MatIconModule,
      MatExpansionModule,
      MatTabsModule,
-     MatCardModule
+     MatCardModule,
+     HttpClientModule,
+    //  CommonModule
 
   ],
-  providers: [],
+  providers: [PrepaidplansService, SimrequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

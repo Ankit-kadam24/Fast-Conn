@@ -17,5 +17,5 @@ export class AppComponent{
     this.toggleHide()
   }
   
-  title = 'Fast-Conn';
+  title = 'telecom';
 }

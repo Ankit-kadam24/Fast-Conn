@@ -1,58 +1,28 @@
 <div class="contain">
-<div class="plan123">
-    <div class="plan ">
-      <!--<h3 class="plan-title">
-        Starter
-      </h3> -->
-      <div class="plan-cost"><span class="plan-price">Rs 199</span><span class="plan-type">/ Monthly</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i> Unlimited Calls </li>
-        <li><i class="ion-checkmark"> </i>25 GB data</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan featured">
-      <!--<h3 class="plan-title">
-        Starter
-      </h3> -->
-      <div class="plan-cost"><span class="plan-price">Rs 399</span><span class="plan-type">/ Monthly</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i> Unlimited Calls </li>
-        <li><i class="ion-checkmark"> </i>75 GB data</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-    <div class="plan ">
-      <div class="plan-cost"><span class="plan-price">Rs 599</span><span class="plan-type">/ Monthly</span></div>
-      <ul class="plan-features">
-        <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-        <li><i class="ion-checkmark"> </i> 100 GB data</li>
-      </ul>
-      <div class="plan-select"><a href="">Select Plan</a></div>
-    </div>
-          <div class="plan featured">
-            <div class="plan-cost"><span class="plan-price">Rs 799</span><span class="plan-type">/ Monthly</span></div>
-            <ul class="plan-features">
-              <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-              <li><i class="ion-checkmark"> </i> 150 GB data</li>
-            </ul>
-            <div class="plan-select"><a href="">Select Plan</a></div>
-          </div>
-          <div class="plan ">
-            <div class="plan-cost"><span class="plan-price">Rs 999</span><span class="plan-type">/ Monthly</span></div>
-            <ul class="plan-features">
-              <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-              <li><i class="ion-checkmark"> </i> 200 GB data</li>
-            </ul>
-            <div class="plan-select"><a href="">Select Plan</a></div>
-          </div>
-          <div class="plan featured">
-            <div class="plan-cost"><span class="plan-price">Rs 1499</span><span class="plan-type">/ Monthly</span></div>
-            <ul class="plan-features">
-              <li><i class="ion-checkmark"> </i>Unlimited Calls</li>
-              <li><i class="ion-checkmark"> </i> 300 GB data</li>
-            </ul>
-            <div class="plan-select"><a href="">Select Plan</a></div>
-          </div>
+  <div class="plan123" >
+    <div *ngFor = "let pl of plans; index as i" >
+      <div *ngIf = 'isOdd(i); then normalBlock; else featuredBlock'></div>
+      <ng-template #normalBlock>
+        <div class="plan" >
+          <div class="plan-cost"><span class="plan-price">Rs {{pl.amt}}</span></div>
+          <ul class="plan-features">
+            <li><i class="ion-checkmark"> </i>{{pl.calls}}</li>
+            <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
+            <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
+          </ul>
+          <div class="plan-select"><a href="">Select Plan</a></div>
         </div>
-</div>
+      </ng-template>
+      <ng-template #featuredBlock>
+        <div class="plan featured" >
+          <div class="plan-cost"><span class="plan-price">Rs {{pl.amt}}</span></div>
+          <ul class="plan-features">
+            <li><i class="ion-checkmark"> </i>{{pl.calls}}</li>
+            <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
+            <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
+          </ul>
+          <div class="plan-select"><a href="">Select Plan</a></div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
