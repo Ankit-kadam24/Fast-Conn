@@ -1,20 +1,32 @@
-.navbar-brand{
-    font-size: 30px;
-    font-weight: bolder;
+.contain{
+    height: auto;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    background: linear-gradient(to right, #0575E6, #021B79);
+    color: white;
+    font-weight: bold;
 }
-.bg-custom{
-    background-color: #041E42 !important;
+.imp{
+    width: 100%;
 }
-.navbar-brand{
-    font-size: 30px;
-    font-weight: bolder;
+.lower-shift{
+    display: flex;
+    margin-top: 10px;
 }
-li a{
-    font-size: 20px;
+.lower-shift p{
+    margin-top: 8px;
+    letter-spacing: 1px;
+    width: 70%;
 }
-.signin{
+.shift{
     background-color: white;
+    margin-left: 15px;
+    width:30%;
 }
-.signin:hover{
-    color: navy;
+a{
+    cursor: pointer;
+    text-decoration: none;
 }

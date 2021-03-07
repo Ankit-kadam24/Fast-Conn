@@ -1,132 +1,27 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-custom py-lg-4">
-  <a class="navbar-brand" href="#">Fast Conn</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Plans<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Buy SIM<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Support<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Recharge<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Pay Bill<span class="sr-only"></span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-          <a routerLink="/login" routerLinkActive="active">
-        <button class="btn btn-outline-info mr-sm-2 signin" type="submit">SIGN IN</button></a>  
-      </li>
-     
-    </ul>            
-
-  </div>
-
-  </nav>
-  
--->
-
-
-
-<div class="container-scroller">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="brand-logo">
-            <img src="/assets/images/Fast-Logo.png" alt="logo" width="60px" height="50px" >
-          </div>
-          <h4 class="font-weight-medium" id="myModalLabel">Sign up</h4>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-
-                <label>Full Name</label>
-                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required">Name is required</div>
-                    <!--<div *ngIf="f.number.name.minlength"> Phone number must be atlest 10 digit</div>-->
-                    
-                </div>
-            </div>
-
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.number.errors }" />
-                    <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                        <div *ngIf="f.number.errors.required">Phone number is required</div>
-                        <div *ngIf="f.number.errors.minlength"> Phone number must be atlest 10 digit</div>
-                        
-                    </div>
-                </div>
-  
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                      <div *ngIf="f.email.errors.required">Email is required</div>
-                      <div *ngIf="f.email.errors.email"> Enter valid Email </div>
-                      
-                  </div>
-              </div>
-              <div class="form-group">
-                <label> Select country</label>
-                <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                  <option>Country</option>
-                  <option>United States of America</option>
-                  <option>United Kingdom</option>
-                  <option>India</option>
-                  <option>Germany</option>
-                  <option>Argentina</option>
-                </select>
-              </div>
-  
-              <div class="form-group" [hidden]="true">
-                  <label>Connection type</label><br> 
-                  <input type="radio" id="1" name="connection">
-                    <label for="Prepaid">Prepaid</label><br>
-                          <input type="radio" id="2"name="connection">
-                          <label for="Postpaid">Postpaid</label>
-          
-              </div>
-  
-                
-                <div class="form-group">
-                    <label> Create Password</label>
-                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                        <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input">
-                        I agree to all Terms & Conditions
-                      </label>
-                    </div>
-                    </div>
-              
-              <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Register</button>
-              <div class="text-center mt-4 font-weight-light">
-                Already have an account? <a routerLink="/login" class="text-primary">Login</a>
-              </div>
-            </form>
-        </div>
-  
+<div class="contain">
+  <form #RegisterForm="ngForm" (ngSubmit)="submitForRegis(RegisterForm.value)">
+    <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" name="name" id="name" placeholder="Enter your name" ngModel class="form-control" autofocus>
+    </div>
+    <div class="form-group">
+      <label for="email">Enter your Email</label>
+      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="pasword" id="password" ngModel class="form-control" placeholder="Enter your password">
+    </div>
+    <div class="form-group">
+      <label for="cpassword">Confirm Password</label>
+      <input type="password" name="cpassword" id="cpassword" ngModel class="form-control" placeholder="Confirm your Password">
+    </div>
+    <div class="lower">
+      <button type="submit" class="btn btn-primary imp">Register</button>
+      <div class="lower-shift">
+        <p>Already have an account ?</p>
+        <button class="btn btn-outline-primary shift"><a href="/login">Login</a></button>
       </div>
     </div>
-  </div>
+  </form>
+</div>

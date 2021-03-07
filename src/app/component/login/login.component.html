@@ -1,108 +1,19 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-custom py-lg-4">
-  <a class="navbar-brand" href="#">Fast Conn</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Plans<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Buy SIM<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Support<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Recharge<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="#">Pay Bill<span class="sr-only"></span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-          <a routerLink="/register" routerLinkActive="active">
-        <button class="btn btn-outline-info mr-sm-2 signin" type="submit">SIGN UP</button></a>  
-      </li>
-     
-    </ul>            
-
-  </div>
-
-  </nav>
-  
- 
-
--->
-
-
-<div class="container-scroller">
-    <div class="content-wrapper d-flex align-items-center auth px-0">
-      <div class="row w-100 mx-0">
-        <div class="col-lg-4 mx-auto">
-          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-      
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="brand-logo">
-                    <img src="/assets/images/Fast-Logo.png" alt="logo" width="60px" height="50px" >
-                  </div>
-                  <h3 class=" font-weight-light">Sign in to continue.</h3>
-                </div>
-                <div class="modal-body">
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="text" formControlName="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.number.errors }" />
-                            <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                                <div *ngIf="f.number.errors.required">Phone number is required</div>
-                                <div *ngIf="f.number.errors.minlength"> Phone number must be atlest 10 digit </div>
-                                
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
-                                <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
-                            </div>
-                          </div>
-                      <div class="form-group form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                        </label>
-                      </div>
-                    <a routerLink="/dashboard">
-                      <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Submit</button></a>
-                      <div class="my-2 d-flex justify-content-between align-items-center">
-                        <!--<div class="form-check">
-                          <label class="form-check-label text-muted">
-                            <input type="checkbox" class="form-check-input">
-                            Keep me signed in
-                          </label>
-                        </div> -->
-                        <a href="#" class="auth-link text-black">Forgot password?</a>
-                      </div>
-                      <div class="text-center mt-4 font-weight-light">
-                        Don't have an account? <a routerLink="/register" class="text-primary">Create</a>
-                      </div>
-                    </form>
-                </div>
-              </div>
-            </div>
-            </div>
-            
-            </div>
-            </div>
-      </div>
-  
+<div class="contain">
+  <form #LoginForm="ngForm" (ngSubmit)="submitForLogin(LoginForm.value)">
+    <div class="form-group">
+      <label for="email">Enter your Email</label>
+      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control">
     </div>
-  
-  
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="pasword" id="password" ngModel class="form-control">
+    </div>
+    <div class="lower">
+      <button type="submit" class="btn btn-primary imp">Login</button>
+      <div class="lower-shift">
+        <p>Don't have an account ?</p>
+        <button class="btn btn-outline-primary shift"><a href="/register">Register</a></button>
+      </div>
+    </div>
+  </form>
+</div>
