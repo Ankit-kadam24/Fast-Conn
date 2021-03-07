@@ -13,7 +13,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, FormGroup, FormControl } from "@angular/forms";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';

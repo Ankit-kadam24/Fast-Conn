@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { PrepaidplansService } from '../prepaidplans.service';
@@ -17,10 +18,14 @@ import { formatCurrency } from '@angular/common';
 export class DashboardComponent implements OnInit {
 
   public requests: Simrequest[]=[]
-  constructor(private _prepaidplansservice : PrepaidplansService, private _simrequestservice:SimrequestService) { }
+  constructor(private _prepaidplansservice : PrepaidplansService, private _simrequestservice:SimrequestService, private _router : Router) { }
   // constructor() {}
   public preorpost = false;
+  public customers : any= null;
+  public special_customer :any = null; 
   public plans = []
+
+  public defaulters : any[] =[]
   public section = 0
   public choosePanel1(){
     this.section = 1
@@ -44,9 +49,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this._simrequestservice.showRequest().subscribe(datas=>{
       this.requests = datas;
-      console.log(datas)
+      // console.log(datas)
     })
 
+    this._simrequestservice.getDefaulters().subscribe(datas2=>{
+      this.defaulters = datas2;
+    });
   }
 
   public onClickSubmit(data : Prepaid[]){
@@ -61,4 +69,42 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+public sendApproval(dataz: any){
+    this._simrequestservice.addToActiveCustomer(dataz).subscribe(data3=>{
+      console.log()
+  })
+}
+public sendRejection(dataz: any){
+  this._simrequestservice.deleteFromnewprepaid(dataz).subscribe(data3=>{
+    console.log()
+  });
+  }
+
+  public searchCustomer(data:any){
+    this._simrequestservice.searchCust(data).subscribe(datax=>{
+      this.customers = datax;
+      console.log(datax);
+    });
+  }
+
+  public sendMail(data:any){
+    this._simrequestservice.sendMailCustomer(data).subscribe(datax=>{
+      console.log("Mail sent successfully!");
+      alert("Mail has been sent to: " + data.email);
+    })
+  }
+
+  public checkReq(){
+    if(this.requests[0]){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  public cancelConnection(data:any){
+    this._simrequestservice.cancelConnFromDefaulters(data).subscribe(datax=>{
+      console.log("User removed permanently!");
+    })
+  }
 }

@@ -7,6 +7,7 @@ import { CommonModule} from '@angular/common';
 
 import { SimrequestService } from '../simrequest.service'
 import { Simrequest } from "../simrequest"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newpostpaid',
@@ -15,14 +16,18 @@ import { Simrequest } from "../simrequest"
 })
 export class NewpostpaidComponent implements OnInit {
 
-  constructor(private _simrequestservice : SimrequestService) { }
+  constructor(private _simrequestservice : SimrequestService, private _router :Router) { }
 
   ngOnInit(): void {
   }
 
   public submitData(data: Simrequest[]){
     this._simrequestservice.addPostpaidRequest(data).subscribe(data1=>{
-      console.log(data1)
+      let currentUrl = this._router.url;
+      this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this._router.navigate([currentUrl]);
+          console.log(currentUrl);
+      });
     })
   }
 }

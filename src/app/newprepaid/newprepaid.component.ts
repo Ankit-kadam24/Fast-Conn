@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient } from '@angular/common/http';
@@ -15,14 +16,18 @@ import { Simrequest } from "../simrequest"
 })
 export class NewprepaidComponent implements OnInit {
 
-  constructor(private _simrequestservice : SimrequestService) { }
+  constructor(private _simrequestservice : SimrequestService, private _router : Router) { }
 
   ngOnInit(): void {
   }
 
   public submitData(data: Simrequest[]){
     this._simrequestservice.addPrepaidRequest(data).subscribe(data1=>{
-      console.log(data1)
+      let currentUrl = this._router.url;
+      this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this._router.navigate([currentUrl]);
+          console.log(currentUrl);
+      });
     })
   }
 }
