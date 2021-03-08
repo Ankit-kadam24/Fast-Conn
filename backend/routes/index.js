@@ -2,6 +2,10 @@ var express = require('express');
 var con = require("../databaseHandler");
 var router = express.Router();
 var nodemailer = require("nodemailer");
+var bcrypt = require("bcrypt");
+const passport = require('passport');
+var localStrategy = require('passport-local').Strategy;
+require('../passport')(passport);
 require("dotenv").config()
 
 /* GET home page. */
@@ -74,10 +78,10 @@ router.post('/newpostpaidrequest',(req,res)=>{
 
 // SHOW CONNECTION REQUEST IN ADMIN PANEL
 router.get('/admin-dashboard',(req,res)=>{
-  con.query("SELECT * FROM newprepaid",(err,data)=>{
-    if (err) {throw err};
-    res.send(data);
-  })
+    con.query("SELECT * FROM newprepaid",(err,data)=>{
+      if (err) {throw err};
+      res.send(data);
+    })
 });
 
 // NEW ACTIVE USER REQUEST LOAD
@@ -151,7 +155,7 @@ router.post("/mail-to-customer",(req,res,next)=>{
 
 })
 
-
+// GET DEFAULTERS LOAD
 router.get("/get-all-defaulters",(req,res)=>{
   con.query("SELECT * FROM defaulters",(err,data)=>{
     if(err) throw err
@@ -161,6 +165,7 @@ router.get("/get-all-defaulters",(req,res)=>{
   })
 });
 
+// REJECT DEFAULTERS
 router.post("/cancel-def",(req,res)=>{
   var {email} = req.body;
   con.query(`DELETE FROM defaulters where email = '${email}'`,(err,data)=>{
@@ -170,4 +175,47 @@ router.post("/cancel-def",(req,res)=>{
     }
   })
 });
+
+router.post("/add-user",(req,res)=>{
+  var {name,email,password} = req.body;
+
+  con.query(`SELECT * FROM users WHERE email = '${email}'`,(err,data)=>{
+    console.log("1st command executed!");
+    if(err) throw err
+    else{
+      if(data[0]) { 
+        console.log(`User : ${data}`);
+        res.end("User already registered!")
+      }
+      else{
+        bcrypt.genSalt(10, (err, salt) => {
+          if (err) throw err;
+          console.log(salt,"->",password)
+          bcrypt.hash(password, salt, (err, hash) => {
+            if (err) throw err;
+            console.log(hash)
+            password = hash;
+        con.query(`INSERT INTO users (name, email, password, usertype) VALUES ('${name}', '${email}', '${password}','USER')`,((err,data)=>{
+          console.log("User registered!");
+        })
+        )})
+      })
+      }
+    }
+  })
+  res.end();
+})
+
+
+router.post('/login-user',passport.authenticate('local'),function(req,res){
+  global.LoggedInUser = req.user
+  res.json(req.user);
+});
+
+router.post("/logout-user",(req,res)=>{
+    req.logout();
+    req.send(200);
+    res.end();
+});
+
 module.exports = router;

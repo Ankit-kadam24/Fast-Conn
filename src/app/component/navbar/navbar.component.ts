@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
+import { FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router, private _authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  public onCheckLocal(){
+    let x = localStorage.getItem('user')
+    if(x){
+      var user = JSON.parse(x)
+      if(user){
+        return true
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  
+  }
+
+  public LogOutUser(data:any){
+    this._authService.LogOutUser(data).subscribe(datax=>{
+      console.log(datax)
+      localStorage.clear();
+      this._router.navigateByUrl("/login").then(()=>{
+        this._router.navigate(["/login"]);
+      });
+    })
   }
 
 }

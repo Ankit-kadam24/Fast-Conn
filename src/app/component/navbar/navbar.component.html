@@ -43,11 +43,21 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-          <a routerLink="/login" routerLinkActive="active">
+      <li class="nav-item active" *ngIf="onCheckLocal(); then logoutbtn; else loginbtn"></li>
+
+      <ng-template #loginbtn>
+        <a routerLink="/login" routerLinkActive="active">
         <button class="btn btn-outline-info mr-sm-2 signin" type="submit">SIGN IN</button></a>  
-      </li>
-     
+      </ng-template>
+
+      <ng-template #logoutbtn>
+        <form #logout="ngForm" (ngSubmit)="LogOutUser(logout.value)">
+          <div class="form-group" [hidden]=true>
+            <input type="text" name="dummy" id="dummy" ngModel="dummy">
+          </div>
+          <button type="submit" class="btn btn-danger">SIGN OUT</button>
+        </form>
+      </ng-template>
     </ul>            
   </div>
 </nav>

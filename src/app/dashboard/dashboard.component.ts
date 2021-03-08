@@ -8,6 +8,7 @@ import { SimrequestService } from '../simrequest.service';
 import { Prepaid } from '../prepaid';
 import { Postpaid } from '../postpaid';
 import { Simrequest} from "../simrequest";
+import { AuthService } from "../auth.service";
 import { formatCurrency } from '@angular/common';
 
 @Component({
@@ -18,7 +19,7 @@ import { formatCurrency } from '@angular/common';
 export class DashboardComponent implements OnInit {
 
   public requests: Simrequest[]=[]
-  constructor(private _prepaidplansservice : PrepaidplansService, private _simrequestservice:SimrequestService, private _router : Router) { }
+  constructor(private _prepaidplansservice : PrepaidplansService, private _simrequestservice:SimrequestService, private _router : Router, private _authService : AuthService) { }
   // constructor() {}
   public preorpost = false;
   public customers : any= null;
@@ -46,6 +47,7 @@ export class DashboardComponent implements OnInit {
   public toggleToPost(){
     this.preorpost = false;
   }
+  public user:any[]=[]
   ngOnInit(): void {
     this._simrequestservice.showRequest().subscribe(datas=>{
       this.requests = datas;
@@ -55,6 +57,8 @@ export class DashboardComponent implements OnInit {
     this._simrequestservice.getDefaulters().subscribe(datas2=>{
       this.defaulters = datas2;
     });
+
+    this.verifyToken()
   }
 
   public onClickSubmit(data : Prepaid[]){
@@ -106,5 +110,28 @@ public sendRejection(dataz: any){
     this._simrequestservice.cancelConnFromDefaulters(data).subscribe(datax=>{
       console.log("User removed permanently!");
     })
+  }
+
+
+  public verifyToken():any{
+    let x = localStorage.getItem('user')
+    if(x){
+      var user = JSON.parse(x)
+      if(user.usertype == "ADMIN"){
+        // console.log(1)
+        this._router.navigateByUrl("/admin-dashboard").then(()=>{
+          this._router.navigate(["/admin-dashboard"]);
+        });
+      }else{
+        this._router.navigateByUrl("/dashboard").then(()=>{
+          this._router.navigate(["/dashboard"]);
+        });
+      }
+    }else{
+      // console.log(2)
+      this._router.navigateByUrl("/login").then(()=>{
+        this._router.navigate(["/login"]);
+      });
+    }
   }
 }

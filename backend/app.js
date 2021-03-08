@@ -3,7 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require("cors")
+var passport = require('passport');
+var session = require('express-session');
+var cors = require("cors");
 
 
 var indexRouter = require('./routes/index');
@@ -20,7 +22,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  secret: 'secret',
+  maxAge: 3600000,
+  resave: true,
+  saveUninitialized: true,
+}));
+// using passport for authentications 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
