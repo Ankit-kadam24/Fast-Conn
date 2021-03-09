@@ -31,13 +31,10 @@ export class NavbarComponent implements OnInit {
   }
 
   public LogOutUser(data:any){
-    this._authService.LogOutUser(data).subscribe(datax=>{
-      console.log(datax)
       localStorage.clear();
       this._router.navigateByUrl("/login").then(()=>{
         this._router.navigate(["/login"]);
       });
-    })
   }
 
 }

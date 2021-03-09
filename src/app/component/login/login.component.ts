@@ -27,6 +27,7 @@ public submitForLogin(data:any[]){
       });
     }
     else if(datax[0].usertype == "ADMIN"){
+      localStorage.setItem("user", JSON.stringify(datax[0])) ;
       this._router.navigateByUrl("/admin-dashboard").then(()=>{
         this._router.navigate(["/admin-dashboard"]);
       });

@@ -53,10 +53,17 @@ export class SimrequestService {
   }
 
   public getDefaulters(){
-    return this.http.get<any[]>(this.baseURL + "get-all-defaulters/")
+    return this.http.get<any[]>(this.baseURL + "get-all-defaulters/");
   }
 
   public cancelConnFromDefaulters(data:any){
-    return this.http.post<any>(this.baseURL + "cancel-def/",data)
+    return this.http.post<any>(this.baseURL + "cancel-def/",data);
+  }
+
+  public searchCustByEmail(dataz:any){
+    // console.log(data)
+    var headers = new Headers();
+    headers.append("Content-Type","application/json");
+    return this.http.post<any[]>(this.baseURL + "search-customer-by-email/",dataz);
   }
 }

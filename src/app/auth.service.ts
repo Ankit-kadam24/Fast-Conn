@@ -22,9 +22,9 @@ export class AuthService {
     return this.http.post<any>(this.baseURL + "login-user/", data);
   }
 
-  public LogOutUser(data:any){
-    var headers = new Headers();
-    headers.append("Content-Type","application/json");
-    return this.http.post<any>(this.baseURL + "logout-user/",data)
-  }
+  // public LogOutUser(data:any){
+  //   var headers = new Headers();
+  //   headers.append("Content-Type","application/json");
+  //   return this.http.post<any>(this.baseURL + "logout-user/","LOGOUT")
+  // }
 }

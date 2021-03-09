@@ -10,7 +10,7 @@
             <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
             <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
           </ul>
-          <div class="plan-select"><a href="">Select Plan</a></div>
+          <button class="plan-select"(click)="showAlert(pl.amt, pl.validity)">Select Plan</button>
         </div>
       </ng-template>
       <ng-template #featuredBlock>
@@ -21,7 +21,7 @@
             <li><i class="ion-checkmark"> </i>{{pl.data}} GB per day </li>
             <li> <i class="ion-checkmark"></i>{{pl.validity}} days validity</li>
           </ul>
-          <div class="plan-select"><a href="">Select Plan</a></div>
+          <button class="plan-select" (click)="showAlert(pl.amt, pl.validity)">Select Plan</button>
         </div>
       </ng-template>
     </div>

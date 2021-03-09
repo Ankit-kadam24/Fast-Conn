@@ -5,6 +5,7 @@ var nodemailer = require("nodemailer");
 var bcrypt = require("bcrypt");
 const passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
+// var session = require('express-session');
 require('../passport')(passport);
 require("dotenv").config()
 
@@ -208,14 +209,29 @@ router.post("/add-user",(req,res)=>{
 
 
 router.post('/login-user',passport.authenticate('local'),function(req,res){
-  global.LoggedInUser = req.user
+  req.session.userid = req.user[0].id;
+  console.log(req.session.userid);
   res.json(req.user);
 });
 
 router.post("/logout-user",(req,res)=>{
     req.logout();
-    req.send(200);
+    console.log("FUCK!");
+    req.session.destroy();
+    req.send("User logged Out!");
     res.end();
 });
+
+
+router.post("/search-customer-by-email",(req,res)=>{
+  var { email } = req.body;
+  con.query(`SELECT * FROM activecustomer WHERE email = "${email}"`,(err, resp)=>{
+    if (err) throw err
+    else{
+      // console.log(resp);
+      res.send(resp);
+    }
+  })
+})
 
 module.exports = router;

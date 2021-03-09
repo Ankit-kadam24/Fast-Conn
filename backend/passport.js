@@ -4,6 +4,7 @@ var bcrypt = require("bcrypt");
 var router = express.Router();
 var localStrategy = require('passport-local').Strategy;
 var passport= require('passport');
+var session = require("express-session");
 
 module.exports = function (passport) {
     passport.use('local', new localStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -54,6 +55,7 @@ passport.serializeUser(function (user, cb) {
 // ! NOT WORKING
 passport.deserializeUser(function (id, cb) {
     con.query(`SELECT * FROM users WHERE id = '${id}'`,function(err,user){
+        console.log(user);
         cb(err,user);          
     });
 });
