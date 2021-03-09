@@ -39,9 +39,8 @@ export class UserDashboardComponent implements OnInit {
     this.user = JSON.parse(this.x)
     let email = this.user.email;
     this._simrequest.searchCustByEmail({email}).subscribe(datax=>{
-      // console.log(datax);
+      //(datax);
       this.global_user = datax;
-      console.log( "Global User: "+ this.global_user[0].name);
     })
 
 

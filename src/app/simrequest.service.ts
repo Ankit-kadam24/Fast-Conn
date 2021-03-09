@@ -61,7 +61,7 @@ export class SimrequestService {
   }
 
   public searchCustByEmail(dataz:any){
-    // console.log(data)
+    //(data)
     var headers = new Headers();
     headers.append("Content-Type","application/json");
     return this.http.post<any[]>(this.baseURL + "search-customer-by-email/",dataz);

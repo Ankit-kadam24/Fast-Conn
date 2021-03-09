@@ -20,7 +20,6 @@ router.post('/planpost',(req,res)=>{
   con.query("INSERT INTO prepaid (amt,calls,data,validity) VALUES ('"+amt+"','"+calls+"','"+data+"','"+validity+"')",(err,data)=>{
     if(err) throw err
     else{
-      console.log("Data Inserted!!" + data);
       res.redirect("/admin-dashboard");
     }
   }); 
@@ -39,7 +38,6 @@ router.post('/postplanpost',(req,res)=>{
   con.query("INSERT INTO postpaid (amt,calls,data,member,validity) VALUES ('"+amt+"','"+calls+"','"+data+"','"+member+"','"+validity+"')",(err,data)=>{
     if(err) throw err
     else{
-      console.log("Data Inserted!!" + data);
       res.end();
     }
   }); 
@@ -54,11 +52,9 @@ router.get('/postpaid/plans',(req,res)=>{
 // NEW PREPAID SIM LOAD
 router.post('/newprepaidrequest',(req,res)=>{
   var { service, name, email, dob, gender, address} = req.body;
-  console.log(name, service);
   con.query("INSERT INTO newprepaid (service, name, email, dob, gender, address) VALUES ('"+service+"','"+name+"','"+email+"','"+dob+"','"+gender+"','"+address+"')",(err,data)=>{
     if(err) throw err
     else{
-      console.log("Data Inserted!!" + data);
       res.end();
     }
   }); 
@@ -67,11 +63,9 @@ router.post('/newprepaidrequest',(req,res)=>{
 // NEW POSTPAID SIM LOAD
 router.post('/newpostpaidrequest',(req,res)=>{
   var { service, name, email, dob, gender, address} = req.body;
-  console.log(name, service);
   con.query("INSERT INTO newprepaid (service, name, email, dob, gender, address) VALUES ('"+service+"','"+name+"','"+email+"','"+dob+"','"+gender+"','"+address+"')",(err,data)=>{
     if(err) throw err
     else{
-      console.log("Data Inserted!!" + data);
       res.end();
     }
   }); 
@@ -94,7 +88,6 @@ router.post('/add-to-active-customer',(req,res)=>{
       con.query(`DELETE FROM newprepaid WHERE email = '${email}' and address = '${address}'`,(err,data2)=>{
         if(err) throw err
         else{
-          console.log("Active User added!");
         }
       })
     }
@@ -108,7 +101,6 @@ router.post("/delete-from-newprepaid",(req,res)=>{
   con.query(`DELETE FROM newprepaid WHERE email = '${email}' and address = '${address}'`,(err,data2)=>{
     if(err) throw err
     else{
-      console.log();
     }
   });
 })
@@ -147,9 +139,9 @@ router.post("/mail-to-customer",(req,res,next)=>{
 
   mailTransporter.sendMail(mailDetails, function(err, data) { 
     if(err) { 
-        console.log('Error Occurs'); 
+        //('Error Occurs'); 
     } else { 
-        console.log('Email sent successfully'); 
+        //('Email sent successfully'); 
     }
     res.end();
   }); 
@@ -181,23 +173,23 @@ router.post("/add-user",(req,res)=>{
   var {name,email,password} = req.body;
 
   con.query(`SELECT * FROM users WHERE email = '${email}'`,(err,data)=>{
-    console.log("1st command executed!");
+    //("1st command executed!");
     if(err) throw err
     else{
       if(data[0]) { 
-        console.log(`User : ${data}`);
+        //(`User : ${data}`);
         res.end("User already registered!")
       }
       else{
         bcrypt.genSalt(10, (err, salt) => {
           if (err) throw err;
-          console.log(salt,"->",password)
+          //(salt,"->",password)
           bcrypt.hash(password, salt, (err, hash) => {
             if (err) throw err;
-            console.log(hash)
+            //(hash)
             password = hash;
         con.query(`INSERT INTO users (name, email, password, usertype) VALUES ('${name}', '${email}', '${password}','USER')`,((err,data)=>{
-          console.log("User registered!");
+          //("User registered!");
         })
         )})
       })
@@ -210,15 +202,12 @@ router.post("/add-user",(req,res)=>{
 
 router.post('/login-user',passport.authenticate('local'),function(req,res){
   req.session.userid = req.user[0].id;
-  console.log(req.session.userid);
   res.json(req.user);
 });
 
 router.post("/logout-user",(req,res)=>{
     req.logout();
-    console.log("FUCK!");
     req.session.destroy();
-    req.send("User logged Out!");
     res.end();
 });
 
@@ -228,7 +217,6 @@ router.post("/search-customer-by-email",(req,res)=>{
   con.query(`SELECT * FROM activecustomer WHERE email = "${email}"`,(err, resp)=>{
     if (err) throw err
     else{
-      // console.log(resp);
       res.send(resp);
     }
   })

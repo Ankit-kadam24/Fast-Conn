@@ -20,7 +20,7 @@ export class PostpaidplansComponent implements OnInit {
   public plans : Postpaid[] = []
 
   public isOdd(elem:any){
-    // console.log(elem, this.plans[elem].amt)
+    //(elem, this.plans[elem].amt)
     if (elem % 2 != 0){
       return true
     }else{

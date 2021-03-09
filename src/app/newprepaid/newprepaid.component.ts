@@ -26,7 +26,7 @@ export class NewprepaidComponent implements OnInit {
       let currentUrl = this._router.url;
       this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
           this._router.navigate([currentUrl]);
-          console.log(currentUrl);
+          //(currentUrl);
       });
     })
   }

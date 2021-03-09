@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this._simrequestservice.showRequest().subscribe(datas=>{
       this.requests = datas;
-      // console.log(datas)
+      //(datas)
     })
 
     this._simrequestservice.getDefaulters().subscribe(datas2=>{
@@ -63,37 +63,37 @@ export class DashboardComponent implements OnInit {
 
   public onClickSubmit(data : Prepaid[]){
     this._prepaidplansservice.addPlan(data).subscribe(data1 =>{
-      console.log("Partly successful!!"+data1);
+      //("Partly successful!!"+data1);
     })
   }
 
   public onClickSubmitPostpaid(data: Postpaid[]){
     this._prepaidplansservice.addPostpaidPlan(data).subscribe(data2=>{
-      console.log("Done!" + data2);
+      //("Done!" + data2);
     })
   }
 
 public sendApproval(dataz: any){
     this._simrequestservice.addToActiveCustomer(dataz).subscribe(data3=>{
-      console.log()
+      //()
   })
 }
 public sendRejection(dataz: any){
   this._simrequestservice.deleteFromnewprepaid(dataz).subscribe(data3=>{
-    console.log()
+    //()
   });
   }
 
   public searchCustomer(data:any){
     this._simrequestservice.searchCust(data).subscribe(datax=>{
       this.customers = datax;
-      console.log(datax);
+      //(datax);
     });
   }
 
   public sendMail(data:any){
     this._simrequestservice.sendMailCustomer(data).subscribe(datax=>{
-      console.log("Mail sent successfully!");
+      //("Mail sent successfully!");
       alert("Mail has been sent to: " + data.email);
     })
   }
@@ -108,7 +108,7 @@ public sendRejection(dataz: any){
 
   public cancelConnection(data:any){
     this._simrequestservice.cancelConnFromDefaulters(data).subscribe(datax=>{
-      console.log("User removed permanently!");
+      //("User removed permanently!");
     })
   }
 
@@ -118,7 +118,7 @@ public sendRejection(dataz: any){
     if(x){
       var user = JSON.parse(x)
       if(user.usertype == "ADMIN"){
-        // console.log(1)
+        //(1)
         this._router.navigateByUrl("/admin-dashboard").then(()=>{
           this._router.navigate(["/admin-dashboard"]);
         });
@@ -128,7 +128,7 @@ public sendRejection(dataz: any){
         });
       }
     }else{
-      // console.log(2)
+      //(2)
       this._router.navigateByUrl("/login").then(()=>{
         this._router.navigate(["/login"]);
       });
