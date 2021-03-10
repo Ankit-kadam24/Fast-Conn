@@ -37,4 +37,18 @@ export class NavbarComponent implements OnInit {
       });
   }
 
+  public userLoggedInAndAdmin(){
+    let x = localStorage.getItem('user')
+    if(x){
+      let user = JSON.parse(x)
+      if (user.usertype == "ADMIN"){
+        return true
+      }else{
+        return false;
+      }
+    }else{
+      return false
+    }
+  }
+
 }

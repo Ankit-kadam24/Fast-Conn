@@ -8,6 +8,20 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only"></span></a>
       </li>
+      <div *ngIf = "userLoggedInAndAdmin(); then AdminDashboardBlock; else DashboardBlock"></div>
+      <ng-template #AdminDashboardBlock>
+        <li class="nav-item active" >
+        <a class="nav-link" routerLink="/dashboard">Dashboard<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin-dashboard">Admin Panel<span class="sr-only"></span></a>
+        </li>
+      </ng-template>
+      <ng-template #DashboardBlock>
+        <li class="nav-item active" >
+        <a class="nav-link" routerLink="/dashboard">Dashboard<span class="sr-only"></span></a>
+        </li>
+      </ng-template>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/prepaid/recharge">Recharge<span class="sr-only"></span></a>
       </li>
