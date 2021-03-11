@@ -2,19 +2,19 @@
   <form #RegisterForm="ngForm" (ngSubmit)="submitForRegis(RegisterForm.value)">
     <div class="form-group">
       <label for="name">Username</label>
-      <input type="text" name="name" id="name" placeholder="Enter your name" ngModel class="form-control" autofocus>
+      <input type="text" name="name" id="name" placeholder="Enter your name" ngModel class="form-control" autofocus required>
     </div>
     <div class="form-group">
       <label for="email">Enter your Email</label>
-      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control">
+      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" ngModel class="form-control" placeholder="Enter your password">
+      <input type="password" name="password" id="password" ngModel class="form-control" placeholder="Enter your password" required>
     </div>
     <div class="form-group">
       <label for="cpassword">Confirm Password</label>
-      <input type="password" name="cpassword" id="cpassword" ngModel class="form-control" placeholder="Confirm your Password">
+      <input type="password" name="cpassword" id="cpassword" ngModel class="form-control" placeholder="Confirm your Password" required>
     </div>
     <div class="lower">
       <button type="submit" class="btn btn-primary imp">Register</button>

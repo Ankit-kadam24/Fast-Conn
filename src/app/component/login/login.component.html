@@ -2,11 +2,11 @@
   <form #LoginForm="ngForm" (ngSubmit)="submitForLogin(LoginForm.value)">
     <div class="form-group">
       <label for="email">Enter your Email</label>
-      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control">
+      <input type="email" name="email" id="email" placeholder="Enter your email" ngModel class="form-control" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" ngModel class="form-control">
+      <input type="password" name="password" id="password" ngModel class="form-control" required>
     </div>
     <div class="lower">
       <button type="submit" class="btn btn-primary imp">Login</button>

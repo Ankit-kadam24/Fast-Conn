@@ -170,32 +170,36 @@ router.post("/cancel-def",(req,res)=>{
 });
 
 router.post("/add-user",(req,res)=>{
-  var {name,email,password} = req.body;
-
-  con.query(`SELECT * FROM users WHERE email = '${email}'`,(err,data)=>{
-    //("1st command executed!");
-    if(err) throw err
-    else{
-      if(data[0]) { 
-        //(`User : ${data}`);
-        res.end("User already registered!")
-      }
+  var {name,email,password,cpassword} = req.body;
+  if(password === cpassword){
+    con.query(`SELECT * FROM users WHERE email = '${email}'`,(err,data)=>{
+      //("1st command executed!");
+      if(err) throw err
       else{
-        bcrypt.genSalt(10, (err, salt) => {
-          if (err) throw err;
-          //(salt,"->",password)
-          bcrypt.hash(password, salt, (err, hash) => {
+        if(data[0]) { 
+          //(`User : ${data}`);
+          res.end("User already registered!")
+        }
+        else{
+          bcrypt.genSalt(10, (err, salt) => {
             if (err) throw err;
-            //(hash)
-            password = hash;
-        con.query(`INSERT INTO users (name, email, password, usertype) VALUES ('${name}', '${email}', '${password}','USER')`,((err,data)=>{
-          //("User registered!");
+            //(salt,"->",password)
+            bcrypt.hash(password, salt, (err, hash) => {
+              if (err) throw err;
+              //(hash)
+              password = hash;
+          con.query(`INSERT INTO users (name, email, password, usertype) VALUES ('${name}', '${email}', '${password}','USER')`,((err,data)=>{
+            //("User registered!");
+          })
+          )})
         })
-        )})
-      })
+        }
       }
-    }
-  })
+    })
+  }else{
+    res.send("Password Mismatch!")
+  }
+  
   res.end();
 })
 
